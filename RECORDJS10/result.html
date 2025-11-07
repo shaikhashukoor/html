@@ -1,0 +1,25 @@
+<html>
+<body>
+<center>
+<h2>EXAM RESULT</h2>
+<h3 id="display"></h3>
+</center>
+
+<script>
+
+const reg = localStorage.getItem("regNum");
+const score = localStorage.getItem("score");
+
+
+if (reg && score !== null) {
+    document.getElementById("display").innerHTML = 
+    "Register Number: " + reg + "<br><span style='color:red; font-size:40px; display:block; margin-top:10px;'>Your Score: " + score + " / 10</span>";
+} else {
+    document.getElementById("display").textContent = 
+    "No result found. Please take the exam first.";
+}
+
+</script>
+</body>
+</html>
+
