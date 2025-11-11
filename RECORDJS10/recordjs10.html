@@ -1,0 +1,165 @@
+<html>
+<body>
+<center><h2>ONLINE EXAM</h2></center>
+<form id="examform">
+<center><p>register number:
+<input type="text" id="reg" required><br><br></p></center>
+
+<h3>Q1:WHAT IS THE CAPITAL CITY OF AUSTRALIA?</h3>
+<input type="radio" name="q1" value="syndey">syndey<br>
+<input type="radio" name="q1" value="colombia">colombia<br>
+<input type="radio" name="q1" value="canberra">canberra<br>
+<input type="radio" name="q1" value="brisbane">brisbane<br>
+
+<h3>Q2:WHAT IS THE CURRENCY OF JAPAN?</h3>
+<input type="radio" name="q2" value="WON">won<br>
+<input type="radio" name="q2" value="YEN">yen<br>
+<input type="radio" name="q2" value="YUAN">yuan<br>
+<input type="radio" name="q2" value="DOLLAR">dollar<br>
+
+<h3>Q3:WHO PAINTED MONA LISA?</h3>
+<input type="radio" name="q3" value="MICHALENDO">michelndo<br>
+<input type="radio" name="q3" value="raphel">raphel<br>
+<input type="radio" name="q3" value="lenardo de caprio">lenardo de capro<br>
+<input type="radio" name="q3" value="carvaggio">carvagio<br>
+
+<h3>Q4:WHO WROTE 1984 ?</h3>
+<input type="radio" name="q4" value="ALDOUS">aldous<br>
+<input type="radio" name="q4" value="orwell">orwell<br>
+<input type="radio" name="q4" value="ray">ray<br>
+<input type="radio" name="q4" value="salinger">salinger<br>
+
+<h3>Q5:WHAT IS THE CHEMICAL SYMBOL OF GOLD?</h3>
+<input type="radio" name="q5" value="AU">au<br>
+<input type="radio" name="q5" value="ag">ag<br>
+<input type="radio" name="q5" value="fe">fe<br>
+<input type="radio" name="q5" value="pb">pb<br>
+
+<h3>Q6:WHEN DID TITANIC SINK?</h3>
+<input type="radio" name="q6" value="1912">1912<br>
+<input type="radio" name="q6" value="1990">1990<br>
+<input type="radio" name="q6" value="1900">1900<br>
+<input type="radio" name="q6" value="1922">1922<br>
+
+<h3>Q7:PLANET CLOSEST TO THE SUN?</h3>
+<input type="radio" name="q7" value="venus">venus<br>
+<input type="radio" name="q7" value="mercury">mercury<br>
+<input type="radio" name="q7" value="saturn">saturn<br>
+<input type="radio" name="q7" value="earth">earth<br>
+
+<h3>Q8:ELEMEMT WITH ATOMIC NUMBER 1?</h3>
+<input type="radio" name="q8" value="helium">helium<br>
+<input type="radio" name="q8" value="water">water<br>
+<input type="radio" name="q8" value="hydregon">hydregon<br>
+<input type="radio" name="q8" value="oxygen">oxygen<br>
+
+<h3>Q9:WHICH IS THE RED PLANET?</h3>
+<input type="radio" name="q9" value="MARS">mars<br>
+<input type="radio" name="q9" value="STAURN">saturn<br>
+<input type="radio" name="q9" value="JUPITER">jupyter<br>
+<input type="radio" name="q9" value="URANUS">uranus<br>
+
+<h3>Q10:WHAT IS THE COLOR WHICH IS ALWAYS ASSOSIATED WITH LOVE?</h3>
+<input type="radio" name="q10" value="pink">pink<br>
+<input type="radio" name="q10" value="black">black<br>
+<input type="radio" name="q10" value="yellow">yellow<br>
+<input type="radio" name="q10" value="red">red<br>
+
+<button type="button" onclick="submitExm()">SUBMIT</button>
+<button type="reset">RESET</button>
+</form>
+<h3 id="result"></h3>
+
+<script>
+let timer = 600;
+const timerElement = document.createElement('h3');
+document.body.insertBefore(timerElement, document.body.firstChild);
+
+function updateTimer() {
+    const minutes = Math.floor(timer / 60);
+    const seconds = timer % 60;
+    timerElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    if (timer > 0) {
+        timer--;
+        setTimeout(updateTimer, 1000);
+    } else {
+        alert("time is up");
+        submitExm();
+    }
+}
+updateTimer();
+
+function disableForm() {
+    const allElements = document.querySelectorAll('input, button');
+    allElements.forEach(el => el.disabled = true);
+}
+
+function enableForm() {
+    const allElements = document.querySelectorAll('input, button');
+    allElements.forEach(el => el.disabled = false);
+}
+
+function submitExm() {
+    let score = 0;
+    let regNum = document.getElementById("reg").value;
+
+    if (regNum == "") {
+        alert("please enter your register number");
+        return;
+    }
+
+    let q1 = document.querySelector('input[name="q1"]:checked');
+    if (q1 && q1.value === "canberra") score++;
+
+    let q2 = document.querySelector('input[name="q2"]:checked');
+    if (q2 && q2.value === "YEN") score++;
+
+    let q3 = document.querySelector('input[name="q3"]:checked');
+    if (q3 && q3.value === "lenardo de caprio") score++;
+
+    let q4 = document.querySelector('input[name="q4"]:checked');
+    if (q4 && q4.value === "orwell") score++;
+
+    let q5 = document.querySelector('input[name="q5"]:checked');
+    if (q5 && q5.value === "AU") score++;
+
+    let q6 = document.querySelector('input[name="q6"]:checked');
+    if (q6 && q6.value === "1912") score++;
+
+    let q7 = document.querySelector('input[name="q7"]:checked');
+    if (q7 && q7.value === "mercury") score++;
+
+    let q8 = document.querySelector('input[name="q8"]:checked');
+    if (q8 && q8.value === "hydregon") score++;
+
+    let q9 = document.querySelector('input[name="q9"]:checked');
+    if (q9 && q9.value === "MARS") score++;
+
+    let q10 = document.querySelector('input[name="q10"]:checked');
+    if (q10 && q10.value === "red") score++;
+
+    disableForm(); 
+
+   
+   
+    localStorage.setItem("regNum", regNum);
+    localStorage.setItem("score", score);
+
+
+
+    localStorage.setItem("examSubmitted", "true");
+
+    window.location.href = "result.html";
+}
+
+
+
+window.onload = () => {
+    enableForm();
+    localStorage.removeItem("examSubmitted");
+};
+</script>
+</body>
+</html>
+
