@@ -1,13 +1,17 @@
 <?php
 
+
 $name = $email = $password = $confirm_password = $phone = "";
 $errors = [];
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 
 function clean_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
+
 
 if (empty($_POST["name"])) {
     $errors['name'] = "Name is required<br>";
@@ -17,6 +21,7 @@ if (empty($_POST["name"])) {
         $errors['name'] = "Only letters and spaces allowed<br>";
     }
 }
+
 
 if (empty($_POST["email"])) {
     $errors['email'] = "Email is required<br>";
@@ -29,6 +34,9 @@ if (empty($_POST["email"])) {
 
 
 
+
+
+
 if (empty($_POST["password"])) {
     $errors['password'] = "Password is required<br>";
 } else {
@@ -37,6 +45,7 @@ if (empty($_POST["password"])) {
         $errors['password'] = "Password must be at least 6 characters<br>";
     }
 }
+
 
 if (empty($_POST["confirm_password"])) {
     $errors['confirm_password'] = "Confirm your password<br>";
@@ -55,9 +64,11 @@ if (empty($_POST["phone"])) {
     }
 }
 
+
 if (empty($errors)) {
     echo "<h1 style='color:green; text-align:center;'>Registration Successful!</h1>";
 }
+
 
 }
 ?>
@@ -72,37 +83,45 @@ input { width: 100%; margin: 11px 0; padding: 7px; }
 </head>
 <body>
 
+
 <h2 style="text-align:center; color:blue";>Registration Form</h2>
 
+
 <form method="POST" action="">
+
 
 <label style="color:brown";>Name:</label>
 <input type="text" name="name" value="<?= $name ?>">
 <span class="error"><?= $errors['name'] ?? '' ?></span>
 
+
 <label style="color:brown";>Email:</label>
 <input type="text" name="email" value="<?= $email ?>">
 <span class="error"><?= $errors['email'] ?? '' ?></span>
 
+
 <label style="color:brown";>Phone:</label>
 <input type="text" name="phone" value="<?= $phone ?>">
 <span class="error"><?= $errors['phone'] ?? '' ?></span>
+
 
 <label style="color:brown";>Password:</label>
 <input type="password" name="password">
 <span class="error"><?= $errors['password'] ?? '' ?></span>
 
+
 <label style="color:brown";>Confirm Password:</label>
 <input type="password" name="confirm_password">
 <span class="error"><?= $errors['confirm_password'] ?? '' ?></span>
 
-<label style="color:brown";>Phone:</label>
-<input type="text" name="phone" value="<?= $phone ?>">
-<span class="error"><?= $errors['phone'] ?? '' ?></span>
+
+
 
 
 <br><br>
 <input type="submit" value="Register" style="background-color:pink";>
 
-</form>
 
+</form>
+</body>
+</html>
